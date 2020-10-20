@@ -161,8 +161,8 @@
     </dependencies>
 
     <name>Webcrawler</name>
-    <description>Package to move threw the web using drlrnium</description>
-    <url>com.github.stevedc1989</url>
+    <description>Package for helping classes for selenium frameworks</description>
+    <url>com.github.tquality</url>
 
     <licenses>
         <license>
@@ -181,9 +181,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/stevedc1989/webmover.git</connection>
-        <developerConnection>scm:git:git@github.com:stevedc1989/webmover.git</developerConnection>
-        <url>https://github.com/stevedc1989/webmover</url>
+        <connection>scm:git:git://github.com/tquality/webcrawler.git</connection>
+        <developerConnection>scm:git:git@github.com:tquality/webcrawler.git</developerConnection>
+        <url>https://github.com/tquality/webcrawler</url>
         <tag>HEAD</tag>
     </scm>
 

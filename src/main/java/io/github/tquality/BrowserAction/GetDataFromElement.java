@@ -1,6 +1,6 @@
-package BrowserAction;
+package io.github.tquality.BrowserAction;
 
-import Waiting.WaitOnObject;
+import io.github.tquality.Waiting.WaitOnObject;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

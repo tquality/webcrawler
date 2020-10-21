@@ -1,4 +1,4 @@
-package Waiting;
+package io.github.tquality.Waiting;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -20,8 +20,8 @@ public class WaitOnObject extends BaseWait{
      * @return Optional if we found the element
      */
     public static Optional<WebElement> waitForElementXpath(WebDriver webdriver, String xpathElement) {
-        WebDriverWait wait = BaseWait.setupWait(webdriver);
-        return  IntStream.range(0, BaseWait.getMaxCounter())
+        WebDriverWait wait = setupWait(webdriver);
+        return  IntStream.range(0, getMaxCounter())
                 .mapToObj(i -> {
                     return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpathElement)));
                 })
@@ -37,7 +37,7 @@ public class WaitOnObject extends BaseWait{
      */
     public static Optional<WebElement> waitForElementName(WebDriver webdriver, String nameElement){
         WebDriverWait wait = setupWait(webdriver);
-        return  IntStream.range(0, BaseWait.getMaxCounter())
+        return  IntStream.range(0, getMaxCounter())
                 .mapToObj(i -> {
                     return wait.until(ExpectedConditions.elementToBeClickable(By.name(nameElement)));
                 })
@@ -53,7 +53,7 @@ public class WaitOnObject extends BaseWait{
      */
     public static Optional<WebElement> waitForElementID(WebDriver webdriver, String idElement){
         WebDriverWait wait = setupWait(webdriver);
-        return  IntStream.range(0, BaseWait.getMaxCounter())
+        return  IntStream.range(0, getMaxCounter())
                 .mapToObj(i -> {
                     return wait.until(ExpectedConditions.elementToBeClickable(By.id(idElement)));
                 })
@@ -69,7 +69,7 @@ public class WaitOnObject extends BaseWait{
      */
     public static Optional<WebElement> waitForElementLinkedText(WebDriver webdriver, String linkedText){
         WebDriverWait wait = setupWait(webdriver);
-        return  IntStream.range(0, BaseWait.getMaxCounter())
+        return  IntStream.range(0, getMaxCounter())
                 .mapToObj(i -> {
                     return wait.until(ExpectedConditions.elementToBeClickable(By.linkText(linkedText)));
                 })

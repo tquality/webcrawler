@@ -1,6 +1,6 @@
 package io.github.tquality.BrowserAction;
 
-import Waiting.BaseWait;
+import io.github.tquality.Waiting.BaseWait;
 import io.github.tquality.Waiting.WaitOnObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

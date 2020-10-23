@@ -6,7 +6,7 @@
 
     <groupId>io.github.tquality</groupId>
     <artifactId>webcrawler</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.1</version>
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
@@ -100,6 +100,48 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <configuration>
+                            <!-- GPG keyname var set in the settings.xml maven file -->
+                            <keyname>${gpg.keyname}</keyname>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.8</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId><!-- Server config in settings.xml -->
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <packaging>jar</packaging>
@@ -161,9 +203,9 @@
 
     <developers>
         <developer>
-            <id>steve</id>
             <name>Steve De Clercq</name>
             <email>de.clercq.steve1@gmail.com</email>
+            <organization>TQuality</organization>
         </developer>
     </developers>
 

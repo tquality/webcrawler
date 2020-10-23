@@ -9,6 +9,9 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Get data from specific element
+ */
 public class GetDataFromElement {
 
     /**

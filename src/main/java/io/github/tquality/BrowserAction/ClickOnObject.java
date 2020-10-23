@@ -8,6 +8,9 @@ import org.openqa.selenium.WebElement;
 import java.io.UnsupportedEncodingException;
 import java.util.Optional;
 
+/**
+ * Class to click on different objects
+ */
 public class ClickOnObject {
 
     /**

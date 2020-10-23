@@ -6,6 +6,9 @@ import waiter.Waiter;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Base waiting class
+ */
 public class BaseWait {
     private static final int waitAmount = 3;
     private static final int maxCounter = 5;

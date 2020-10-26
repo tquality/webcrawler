@@ -1,6 +1,7 @@
 package io.github.tquality.Waiting;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -8,13 +9,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.TimeoutException;
 import java.util.stream.IntStream;
 
-/**
- * Wait for a specific object
- */
-public class WaitOnObject extends BaseWait{
+public abstract class WaitForIt extends BaseWait{
 
     /**
      * Wait for an element with xpath selector
@@ -23,8 +20,8 @@ public class WaitOnObject extends BaseWait{
      * @return Optional if we found the element
      */
     public static Optional<WebElement> waitForElementXpath(WebDriver webdriver, String xpathElement) {
-        WebDriverWait wait = setupWait(webdriver);
-        return  IntStream.range(0, getMaxCounter())
+        WebDriverWait wait = WaitForIt.setupWait(webdriver);
+        return  IntStream.range(0, WaitForIt.getMaxCounter())
                 .mapToObj(i -> {
                     return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpathElement)));
                 })
@@ -94,5 +91,20 @@ public class WaitOnObject extends BaseWait{
                 })
                 .filter(Objects::nonNull)
                 .findFirst();
+    }
+
+    /**
+     * Wait for an element to dissapear
+     * @param webDriver the running webdriver
+     * @param element element that needs to go away
+     */
+    public static void waitForElementBydissapeared(WebDriver webDriver, By element){
+        WebDriverWait wait = setupWait(webDriver);
+        try {
+            for(int i = 0;i<getHardcodedWaitAmount();i++) {
+                waitForElementBy(webDriver, element);
+                waitForPageToLoad(webDriver);
+            }
+        }catch (NoSuchElementException ignored){}
     }
 }

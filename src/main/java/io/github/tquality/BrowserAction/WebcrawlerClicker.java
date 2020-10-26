@@ -1,7 +1,6 @@
 package io.github.tquality.BrowserAction;
 
-import io.github.tquality.Waiting.BaseWait;
-import io.github.tquality.Waiting.WaitOnObject;
+import io.github.tquality.Waiting.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,7 +21,7 @@ public abstract class WebcrawlerClicker {
     private static void clickOnWebElement(Optional elementOptional, WebDriver webDriver){
         WebElement element = (WebElement) elementOptional.get();
         element.click();
-        BaseWait.waitForPageToLoad(webDriver);
+        WaitForIt.waitForPageToLoad(webDriver);
     }
 
     /**
@@ -31,8 +30,9 @@ public abstract class WebcrawlerClicker {
      * @param elementName the name of the element
      */
     public static void onElementWithName(WebDriver webDriver, String elementName){
-        Optional<WebElement> webElement = WaitOnObject.waitForElementName(webDriver,elementName);
+        Optional<WebElement> webElement = WaitForIt.waitForElementName(webDriver,elementName);
         clickOnWebElement(webElement,webDriver);
+        WaitForIt.waitForPageToLoad(webDriver);
     }
 
     /**
@@ -41,8 +41,9 @@ public abstract class WebcrawlerClicker {
      * @param elementXpath the xpath of the element
      */
     public static void onElementWithXpath(WebDriver webDriver, String elementXpath){
-        Optional<WebElement> webElement = WaitOnObject.waitForElementXpath(webDriver,elementXpath);
+        Optional<WebElement> webElement = WaitForIt.waitForElementXpath(webDriver,elementXpath);
         clickOnWebElement(webElement,webDriver);
+        WaitForIt.waitForPageToLoad(webDriver);
     }
 
     /**
@@ -51,8 +52,9 @@ public abstract class WebcrawlerClicker {
      * @param linkedText the text of the link of the element
      */
     public static void onLinkedText(WebDriver webDriver, String linkedText){
-        Optional<WebElement> webElement = WaitOnObject.waitForElementLinkedText(webDriver,linkedText);
+        Optional<WebElement> webElement = WaitForIt.waitForElementLinkedText(webDriver,linkedText);
         clickOnWebElement(webElement,webDriver);
+        WaitForIt.waitForPageToLoad(webDriver);
     }
 
     /**
@@ -68,6 +70,7 @@ public abstract class WebcrawlerClicker {
         }
         String createdXpath = "(.//*[text()='" + textInElement + "'])[last()]";
         onElementWithXpath(webDriver,createdXpath);
+        WaitForIt.waitForPageToLoad(webDriver);
     }
 
     /**
@@ -78,6 +81,7 @@ public abstract class WebcrawlerClicker {
     public static void firstElementWithExactText(WebDriver webDriver, String textInElement){
         String createdXpath = ".//*[text()='" + textInElement + "']";
         onElementWithXpath(webDriver,createdXpath);
+        WaitForIt.waitForPageToLoad(webDriver);
     }
 
     /**
@@ -86,7 +90,8 @@ public abstract class WebcrawlerClicker {
      * @param elementToClick the element we want to click on
      */
     public static void clickOnByElement(WebDriver webDriver, By elementToClick){
-        Optional<WebElement> webElement = WaitOnObject.waitForElementBy(webDriver,elementToClick);
+        Optional<WebElement> webElement = WaitForIt.waitForElementBy(webDriver,elementToClick);
         clickOnWebElement(webElement,webDriver);
+        WaitForIt.waitForPageToLoad(webDriver);
     }
 }

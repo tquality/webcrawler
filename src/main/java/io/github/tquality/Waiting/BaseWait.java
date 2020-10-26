@@ -9,9 +9,10 @@ import java.util.concurrent.TimeUnit;
 /**
  * Base waiting class
  */
-public class BaseWait {
-    private static final int waitAmount = 3;
-    private static final int maxCounter = 5;
+class BaseWait {
+    private int useableWaitAmount = 3;
+    private static int hardcodedWaitAmount = 3;
+    private static int maxCounter = 5;
     private static Waiter waiter = new Waiter();
 
     /**
@@ -20,7 +21,7 @@ public class BaseWait {
      * @return wait element
      */
     protected static WebDriverWait setupWait(WebDriver browser){
-        return new WebDriverWait(browser,waitAmount);
+        return new WebDriverWait(browser,hardcodedWaitAmount);
     }
 
     /**
@@ -45,5 +46,21 @@ public class BaseWait {
      */
     public static int getMaxCounter() {
         return maxCounter;
+    }
+
+    public int getUseableWaitAmount() {
+        return useableWaitAmount;
+    }
+
+    public void setWaitTime(int waitAmount) {
+        this.useableWaitAmount = waitAmount;
+    }
+
+    public void setMaxCounter(int maxCounter) {
+        this.maxCounter = maxCounter;
+    }
+
+    protected static int getHardcodedWaitAmount() {
+        return hardcodedWaitAmount;
     }
 }

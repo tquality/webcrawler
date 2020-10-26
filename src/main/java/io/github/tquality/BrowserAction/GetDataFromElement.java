@@ -1,6 +1,7 @@
 package io.github.tquality.BrowserAction;
 
-import io.github.tquality.Waiting.WaitOnObject;
+import io.github.tquality.Waiting.WaitForIt;
+import io.github.tquality.Waiting.WaitForIt;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +13,7 @@ import java.util.Optional;
 /**
  * Get data from specific element
  */
-public class GetDataFromElement {
+public abstract class GetDataFromElement {
 
     /**
      * Cut new line characters from a string
@@ -43,7 +44,7 @@ public class GetDataFromElement {
      * @return String that contains the text
      */
     public static String getTextXpathElementWithoutCuttingNewline(WebDriver webDriver, String xpathOfElement){
-        Optional<WebElement> presentElement = WaitOnObject.waitForElementXpath(webDriver,xpathOfElement);
+        Optional<WebElement> presentElement = WaitForIt.waitForElementXpath(webDriver,xpathOfElement);
         if(presentElement.isPresent()) {
             return getTextFromElement(presentElement);
         }else {
@@ -58,7 +59,7 @@ public class GetDataFromElement {
      * @return String that contains the text
      */
     public static String getTextXpathElementWithCuttingNewline(WebDriver webDriver, String xpathOfElement){
-        Optional<WebElement> presentElement = WaitOnObject.waitForElementXpath(webDriver,xpathOfElement);
+        Optional<WebElement> presentElement = WaitForIt.waitForElementXpath(webDriver,xpathOfElement);
         if(presentElement.isPresent()) {
             String textFromElement = getTextFromElement(presentElement);
             return stripNewLine(textFromElement);
@@ -74,7 +75,7 @@ public class GetDataFromElement {
      * @return String that contains the text
      */
     public static String getTextNameElementWithoutCuttingNewline(WebDriver webDriver, String nameOfElement){
-        Optional<WebElement> presentElement = WaitOnObject.waitForElementName(webDriver,nameOfElement);
+        Optional<WebElement> presentElement = WaitForIt.waitForElementName(webDriver,nameOfElement);
         if(presentElement.isPresent()) {
             return getTextFromElement(presentElement);
         }else {
@@ -89,7 +90,7 @@ public class GetDataFromElement {
      * @return String that contains the text
      */
     public static String getTextNameElementWithCuttingNewline(WebDriver webDriver, String nameOfElement){
-        Optional<WebElement> presentElement = WaitOnObject.waitForElementName(webDriver,nameOfElement);
+        Optional<WebElement> presentElement = WaitForIt.waitForElementName(webDriver,nameOfElement);
         if(presentElement.isPresent()) {
             String textFromElement = getTextFromElement(presentElement);
             return stripNewLine(textFromElement);
@@ -105,7 +106,7 @@ public class GetDataFromElement {
      * @return String that contains the text
      */
     public static String getTextIDElementWithoutCuttingNewline(WebDriver webDriver, String idOfElement){
-        Optional<WebElement> presentElement = WaitOnObject.waitForElementID(webDriver,idOfElement);
+        Optional<WebElement> presentElement = WaitForIt.waitForElementID(webDriver,idOfElement);
         if(presentElement.isPresent()) {
             return getTextFromElement(presentElement);
         }else {
@@ -120,7 +121,7 @@ public class GetDataFromElement {
      * @return String that contains the text
      */
     public static String getTextIDElementWithCuttingNewline(WebDriver webDriver, String idOfElement){
-        Optional<WebElement> presentElement = WaitOnObject.waitForElementName(webDriver,idOfElement);
+        Optional<WebElement> presentElement = WaitForIt.waitForElementName(webDriver,idOfElement);
         if(presentElement.isPresent()) {
             String textFromElement = getTextFromElement(presentElement);
             return stripNewLine(textFromElement);
@@ -147,7 +148,7 @@ public class GetDataFromElement {
      * @return List of webelements with the options
      */
     public static List<WebElement> getTextElementsFromDropDownXpath(WebDriver webDriver, String xpathOfElement){
-        Optional<WebElement> presentElement = WaitOnObject.waitForElementXpath(webDriver,xpathOfElement);
+        Optional<WebElement> presentElement = WaitForIt.waitForElementXpath(webDriver,xpathOfElement);
         if (presentElement.isPresent()){
             return getAllSelectElements(presentElement);
         }else{
@@ -162,7 +163,7 @@ public class GetDataFromElement {
      * @return List of webelements with the options
      */
     public static List<WebElement> getTextElementsFromDropDownName(WebDriver webDriver, String nameOfElement){
-        Optional<WebElement> presentElement = WaitOnObject.waitForElementName(webDriver,nameOfElement);
+        Optional<WebElement> presentElement = WaitForIt.waitForElementName(webDriver,nameOfElement);
         if (presentElement.isPresent()){
             return getAllSelectElements(presentElement);
         }else{
@@ -177,7 +178,7 @@ public class GetDataFromElement {
      * @return List of webelements with the options
      */
     public static List<WebElement> getTextElementsFromDropDownID(WebDriver webDriver, String idOfElement){
-        Optional<WebElement> presentElement = WaitOnObject.waitForElementID(webDriver,idOfElement);
+        Optional<WebElement> presentElement = WaitForIt.waitForElementID(webDriver,idOfElement);
         if (presentElement.isPresent()){
             return getAllSelectElements(presentElement);
         }else{

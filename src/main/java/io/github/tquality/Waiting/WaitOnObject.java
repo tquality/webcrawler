@@ -79,4 +79,20 @@ public class WaitOnObject extends BaseWait{
                 .filter(Objects::nonNull)
                 .findFirst();
     }
+
+    /**
+     * Wait for an element wit By selector
+     * @param webDriver the running webdriver
+     * @param element the element we want to wait for
+     * @return Optional met the first found element
+     */
+    public static Optional<WebElement> waitForElementBy(WebDriver webDriver, By element){
+        WebDriverWait wait = setupWait(webDriver);
+        return  IntStream.range(0, getMaxCounter())
+                .mapToObj(i -> {
+                    return wait.until(ExpectedConditions.elementToBeClickable(element));
+                })
+                .filter(Objects::nonNull)
+                .findFirst();
+    }
 }

@@ -2,6 +2,7 @@ package io.github.tquality.BrowserAction;
 
 import io.github.tquality.Waiting.BaseWait;
 import io.github.tquality.Waiting.WaitOnObject;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -11,7 +12,7 @@ import java.util.Optional;
 /**
  * Class to click on different objects
  */
-public class ClickOnObject {
+public abstract class WebcrawlerClicker {
 
     /**
      * Do the effective click on the webelement
@@ -77,5 +78,15 @@ public class ClickOnObject {
     public static void firstElementWithExactText(WebDriver webDriver, String textInElement){
         String createdXpath = ".//*[text()='" + textInElement + "']";
         onElementWithXpath(webDriver,createdXpath);
+    }
+
+    /**
+     * Click on the element with By selector
+     * @param webDriver the running browser
+     * @param elementToClick the element we want to click on
+     */
+    public static void clickOnByElement(WebDriver webDriver, By elementToClick){
+        Optional<WebElement> webElement = WaitOnObject.waitForElementBy(webDriver,elementToClick);
+        clickOnWebElement(webElement,webDriver);
     }
 }

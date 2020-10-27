@@ -13,7 +13,7 @@ import java.util.Optional;
 /**
  * Get data from specific element
  */
-public abstract class GetDataFromElement {
+public abstract class WebcrawlerGetData {
 
     /**
      * Cut new line characters from a string

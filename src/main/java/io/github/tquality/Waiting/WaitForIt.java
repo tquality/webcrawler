@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -106,5 +107,9 @@ public abstract class WaitForIt extends BaseWait{
                 waitForPageToLoad(webDriver);
             }
         }catch (NoSuchElementException ignored){}
+    }
+
+    public static List<WebElement> waitForWebElement(WebDriver webDriver, String xpath){
+        return webDriver.findElements(By.xpath(xpath));
     }
 }

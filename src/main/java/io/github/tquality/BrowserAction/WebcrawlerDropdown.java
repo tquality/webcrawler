@@ -20,7 +20,7 @@ public class WebcrawlerDropdown {
      * @param value the value we want to select
      */
     public static void selectValueInElementBy(WebDriver webDriver, By element,String value){
-        Optional<WebElement> webElements = WaitForIt.waitForElementBy(webDriver,element);
+        Optional<WebElement> webElements = WaitForIt.waitForElementByClickable(webDriver,element);
         WebElement webElement = webElements.get();
         Select select = new Select(webElement);
         select.selectByValue(value);
@@ -33,7 +33,7 @@ public class WebcrawlerDropdown {
      * @param value the value we want to select
      */
     public static void selectValueInElementName(WebDriver webDriver, String name,String value){
-        Optional<WebElement> webElements = WaitForIt.waitForElementName(webDriver,name);
+        Optional<WebElement> webElements = WaitForIt.waitForElementNameClickable(webDriver,name);
         WebElement webElement = webElements.get();
         Select select = new Select(webElement);
         select.selectByValue(value);
@@ -46,7 +46,7 @@ public class WebcrawlerDropdown {
      * @param value the value we want to select
      */
     public static void selectValueInElementId(WebDriver webDriver, String id,String value){
-        Optional<WebElement> webElements = WaitForIt.waitForElementID(webDriver,id);
+        Optional<WebElement> webElements = WaitForIt.waitForElementIDClickable(webDriver,id);
         WebElement webElement = webElements.get();
         Select select = new Select(webElement);
         select.selectByValue(value);
@@ -59,7 +59,7 @@ public class WebcrawlerDropdown {
      * @param value the value we want to select
      */
     public static void selectValueInElementXpath(WebDriver webDriver, String xpath,String value){
-        Optional<WebElement> webElements = WaitForIt.waitForElementXpath(webDriver,xpath);
+        Optional<WebElement> webElements = WaitForIt.waitForElementXpathClickable(webDriver,xpath);
         WebElement webElement = webElements.get();
         Select select = new Select(webElement);
         select.selectByValue(value);

@@ -20,11 +20,27 @@ public abstract class WaitForIt extends BaseWait{
      * @param xpathElement the element
      * @return Optional if we found the element
      */
-    public static Optional<WebElement> waitForElementXpath(WebDriver webdriver, String xpathElement) {
+    public static Optional<WebElement> waitForElementXpathClickable(WebDriver webdriver, String xpathElement) {
         WebDriverWait wait = WaitForIt.setupWait(webdriver);
         return  IntStream.range(0, WaitForIt.getMaxCounter())
                 .mapToObj(i -> {
                     return wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpathElement)));
+                })
+                .filter(Objects::nonNull)
+                .findFirst();
+    }
+
+    /**
+     * Wait for an element with xpath selector
+     * @param webdriver the running webdriver
+     * @param cssSelector the element
+     * @return Optional if we found the element
+     */
+    public static Optional<WebElement> waitForElementCSSSelectorClickable(WebDriver webdriver, String cssSelector) {
+        WebDriverWait wait = WaitForIt.setupWait(webdriver);
+        return  IntStream.range(0, WaitForIt.getMaxCounter())
+                .mapToObj(i -> {
+                    return wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(cssSelector)));
                 })
                 .filter(Objects::nonNull)
                 .findFirst();
@@ -36,7 +52,7 @@ public abstract class WaitForIt extends BaseWait{
      * @param nameElement the element
      * @return Optional if we found the element
      */
-    public static Optional<WebElement> waitForElementName(WebDriver webdriver, String nameElement){
+    public static Optional<WebElement> waitForElementNameClickable(WebDriver webdriver, String nameElement){
         WebDriverWait wait = setupWait(webdriver);
         return  IntStream.range(0, getMaxCounter())
                 .mapToObj(i -> {
@@ -52,7 +68,7 @@ public abstract class WaitForIt extends BaseWait{
      * @param idElement the element
      * @return Optional if we found the element
      */
-    public static Optional<WebElement> waitForElementID(WebDriver webdriver, String idElement){
+    public static Optional<WebElement> waitForElementIDClickable(WebDriver webdriver, String idElement){
         WebDriverWait wait = setupWait(webdriver);
         return  IntStream.range(0, getMaxCounter())
                 .mapToObj(i -> {
@@ -68,7 +84,7 @@ public abstract class WaitForIt extends BaseWait{
      * @param linkedText the element
      * @return Optional if we found the element
      */
-    public static Optional<WebElement> waitForElementLinkedText(WebDriver webdriver, String linkedText){
+    public static Optional<WebElement> waitForElementLinkedTextClickable(WebDriver webdriver, String linkedText){
         WebDriverWait wait = setupWait(webdriver);
         return  IntStream.range(0, getMaxCounter())
                 .mapToObj(i -> {
@@ -84,7 +100,7 @@ public abstract class WaitForIt extends BaseWait{
      * @param element the element we want to wait for
      * @return Optional met the first found element
      */
-    public static Optional<WebElement> waitForElementBy(WebDriver webDriver, By element){
+    public static Optional<WebElement> waitForElementByClickable(WebDriver webDriver, By element){
         WebDriverWait wait = setupWait(webDriver);
         return  IntStream.range(0, getMaxCounter())
                 .mapToObj(i -> {
@@ -103,7 +119,7 @@ public abstract class WaitForIt extends BaseWait{
         WebDriverWait wait = setupWait(webDriver);
         try {
             for(int i = 0;i<getHardcodedWaitAmount();i++) {
-                waitForElementBy(webDriver, element);
+                waitForElementByClickable(webDriver, element);
                 waitForPageToLoad(webDriver);
             }
         }catch (NoSuchElementException ignored){}
@@ -111,5 +127,55 @@ public abstract class WaitForIt extends BaseWait{
 
     public static List<WebElement> waitForWebElement(WebDriver webDriver, String xpath){
         return webDriver.findElements(By.xpath(xpath));
+    }
+
+    public static void waitForElementPresentXpath(WebDriver webDriver, String xpath){
+        for (int i=0;i<10;i++){
+            WaitForIt.waitForPageToLoad(webDriver);
+            try{
+                webDriver.findElement(By.xpath(xpath));
+                break;
+            }catch (NoSuchElementException ignored){}
+        }
+    }
+
+    public static void waitForElementPresentName(WebDriver webDriver, String name){
+        for (int i=0;i<10;i++){
+            WaitForIt.waitForPageToLoad(webDriver);
+            try{
+                webDriver.findElement(By.name(name));
+                break;
+            }catch (NoSuchElementException ignored){}
+        }
+    }
+
+    public static void waitForElementPresentId(WebDriver webDriver, String id){
+        for (int i=0;i<10;i++){
+            WaitForIt.waitForPageToLoad(webDriver);
+            try{
+                webDriver.findElement(By.id(id));
+                break;
+            }catch (NoSuchElementException ignored){}
+        }
+    }
+
+    public static void waitForElementPresentCssSelector(WebDriver webDriver, String cssSelector){
+        for (int i=0;i<10;i++){
+            WaitForIt.waitForPageToLoad(webDriver);
+            try{
+                webDriver.findElement(By.cssSelector(cssSelector));
+                break;
+            }catch (NoSuchElementException ignored){}
+        }
+    }
+
+    public static void waitForElementPresentLinkText(WebDriver webDriver, String linkText){
+        for (int i=0;i<10;i++){
+            WaitForIt.waitForPageToLoad(webDriver);
+            try{
+                webDriver.findElement(By.linkText(linkText));
+                break;
+            }catch (NoSuchElementException ignored){}
+        }
     }
 }

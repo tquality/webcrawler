@@ -1,7 +1,7 @@
 package io.github.tquality.BrowserAction;
 
 import io.github.tquality.Waiting.WaitForIt;
-import io.github.tquality.Waiting.WaitForIt;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,6 +37,10 @@ public abstract class WebcrawlerGetData {
         return webElement.getText();
     }
 
+    private static String getTextFromElement(WebElement webElement){
+        return webElement.getText();
+    }
+
     /**
      * Get the text from an Xpath element without cutting the newline
      * @param webDriver the running webdriver with the browser
@@ -44,12 +48,9 @@ public abstract class WebcrawlerGetData {
      * @return String that contains the text
      */
     public static String getTextXpathElementWithoutCuttingNewline(WebDriver webDriver, String xpathOfElement){
-        Optional<WebElement> presentElement = WaitForIt.waitForElementXpath(webDriver,xpathOfElement);
-        if(presentElement.isPresent()) {
-            return getTextFromElement(presentElement);
-        }else {
-            throw new NoSuchElementException("Could not find element:" + xpathOfElement);
-        }
+        WaitForIt.waitForElementPresentXpath(webDriver,xpathOfElement);
+        WebElement webElement = webDriver.findElement(By.xpath(xpathOfElement));
+        return getTextFromElement(webElement);
     }
 
     /**
@@ -59,13 +60,9 @@ public abstract class WebcrawlerGetData {
      * @return String that contains the text
      */
     public static String getTextXpathElementWithCuttingNewline(WebDriver webDriver, String xpathOfElement){
-        Optional<WebElement> presentElement = WaitForIt.waitForElementXpath(webDriver,xpathOfElement);
-        if(presentElement.isPresent()) {
-            String textFromElement = getTextFromElement(presentElement);
-            return stripNewLine(textFromElement);
-        }else {
-            throw new NoSuchElementException("Could not find element:" + xpathOfElement);
-        }
+        WaitForIt.waitForElementPresentXpath(webDriver,xpathOfElement);
+        WebElement webElement = webDriver.findElement(By.xpath(xpathOfElement));
+        return getTextFromElement(webElement);
     }
 
     /**
@@ -75,12 +72,9 @@ public abstract class WebcrawlerGetData {
      * @return String that contains the text
      */
     public static String getTextNameElementWithoutCuttingNewline(WebDriver webDriver, String nameOfElement){
-        Optional<WebElement> presentElement = WaitForIt.waitForElementName(webDriver,nameOfElement);
-        if(presentElement.isPresent()) {
-            return getTextFromElement(presentElement);
-        }else {
-            throw new NoSuchElementException("Could not find element:" + nameOfElement);
-        }
+        WaitForIt.waitForElementPresentName(webDriver,nameOfElement);
+        WebElement webElement = webDriver.findElement(By.name(nameOfElement));
+        return getTextFromElement(webElement);
     }
 
     /**
@@ -90,13 +84,9 @@ public abstract class WebcrawlerGetData {
      * @return String that contains the text
      */
     public static String getTextNameElementWithCuttingNewline(WebDriver webDriver, String nameOfElement){
-        Optional<WebElement> presentElement = WaitForIt.waitForElementName(webDriver,nameOfElement);
-        if(presentElement.isPresent()) {
-            String textFromElement = getTextFromElement(presentElement);
-            return stripNewLine(textFromElement);
-        }else {
-            throw new NoSuchElementException("Could not find element:" + nameOfElement);
-        }
+        WaitForIt.waitForElementPresentName(webDriver,nameOfElement);
+        WebElement webElement = webDriver.findElement(By.name(nameOfElement));
+        return getTextFromElement(webElement);
     }
 
     /**
@@ -106,12 +96,9 @@ public abstract class WebcrawlerGetData {
      * @return String that contains the text
      */
     public static String getTextIDElementWithoutCuttingNewline(WebDriver webDriver, String idOfElement){
-        Optional<WebElement> presentElement = WaitForIt.waitForElementID(webDriver,idOfElement);
-        if(presentElement.isPresent()) {
-            return getTextFromElement(presentElement);
-        }else {
-            throw new NoSuchElementException("Could not find element:" + idOfElement);
-        }
+        WaitForIt.waitForElementPresentId(webDriver,idOfElement);
+        WebElement webElement = webDriver.findElement(By.id(idOfElement));
+        return getTextFromElement(webElement);
     }
 
     /**
@@ -121,13 +108,9 @@ public abstract class WebcrawlerGetData {
      * @return String that contains the text
      */
     public static String getTextIDElementWithCuttingNewline(WebDriver webDriver, String idOfElement){
-        Optional<WebElement> presentElement = WaitForIt.waitForElementName(webDriver,idOfElement);
-        if(presentElement.isPresent()) {
-            String textFromElement = getTextFromElement(presentElement);
-            return stripNewLine(textFromElement);
-        }else {
-            throw new NoSuchElementException("Could not find element:" + idOfElement);
-        }
+        WaitForIt.waitForElementPresentId(webDriver,idOfElement);
+        WebElement webElement = webDriver.findElement(By.id(idOfElement));
+        return getTextFromElement(webElement);
     }
 
     /**
@@ -148,7 +131,7 @@ public abstract class WebcrawlerGetData {
      * @return List of webelements with the options
      */
     public static List<WebElement> getTextElementsFromDropDownXpath(WebDriver webDriver, String xpathOfElement){
-        Optional<WebElement> presentElement = WaitForIt.waitForElementXpath(webDriver,xpathOfElement);
+        Optional<WebElement> presentElement = WaitForIt.waitForElementXpathClickable(webDriver,xpathOfElement);
         if (presentElement.isPresent()){
             return getAllSelectElements(presentElement);
         }else{
@@ -163,7 +146,7 @@ public abstract class WebcrawlerGetData {
      * @return List of webelements with the options
      */
     public static List<WebElement> getTextElementsFromDropDownName(WebDriver webDriver, String nameOfElement){
-        Optional<WebElement> presentElement = WaitForIt.waitForElementName(webDriver,nameOfElement);
+        Optional<WebElement> presentElement = WaitForIt.waitForElementNameClickable(webDriver,nameOfElement);
         if (presentElement.isPresent()){
             return getAllSelectElements(presentElement);
         }else{
@@ -178,7 +161,7 @@ public abstract class WebcrawlerGetData {
      * @return List of webelements with the options
      */
     public static List<WebElement> getTextElementsFromDropDownID(WebDriver webDriver, String idOfElement){
-        Optional<WebElement> presentElement = WaitForIt.waitForElementID(webDriver,idOfElement);
+        Optional<WebElement> presentElement = WaitForIt.waitForElementIDClickable(webDriver,idOfElement);
         if (presentElement.isPresent()){
             return getAllSelectElements(presentElement);
         }else{

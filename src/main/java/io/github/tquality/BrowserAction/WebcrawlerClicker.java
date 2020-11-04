@@ -30,7 +30,7 @@ public abstract class WebcrawlerClicker {
      * @param elementName the name of the element
      */
     public static void onElementWithName(WebDriver webDriver, String elementName){
-        Optional<WebElement> webElement = WaitForIt.waitForElementName(webDriver,elementName);
+        Optional<WebElement> webElement = WaitForIt.waitForElementNameClickable(webDriver,elementName);
         clickOnWebElement(webElement,webDriver);
         WaitForIt.waitForPageToLoad(webDriver);
     }
@@ -41,7 +41,7 @@ public abstract class WebcrawlerClicker {
      * @param elementXpath the xpath of the element
      */
     public static void onElementWithXpath(WebDriver webDriver, String elementXpath){
-        Optional<WebElement> webElement = WaitForIt.waitForElementXpath(webDriver,elementXpath);
+        Optional<WebElement> webElement = WaitForIt.waitForElementXpathClickable(webDriver,elementXpath);
         clickOnWebElement(webElement,webDriver);
         WaitForIt.waitForPageToLoad(webDriver);
     }
@@ -52,7 +52,7 @@ public abstract class WebcrawlerClicker {
      * @param linkedText the text of the link of the element
      */
     public static void onLinkedText(WebDriver webDriver, String linkedText){
-        Optional<WebElement> webElement = WaitForIt.waitForElementLinkedText(webDriver,linkedText);
+        Optional<WebElement> webElement = WaitForIt.waitForElementLinkedTextClickable(webDriver,linkedText);
         clickOnWebElement(webElement,webDriver);
         WaitForIt.waitForPageToLoad(webDriver);
     }
@@ -68,7 +68,7 @@ public abstract class WebcrawlerClicker {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        String createdXpath = "(.//*[text()='" + textInElement + "'])[last()]";
+        String createdXpath = "(//*[contains(text(),'"+ textInElement + "')])[last()]";
         onElementWithXpath(webDriver,createdXpath);
         WaitForIt.waitForPageToLoad(webDriver);
     }
@@ -79,7 +79,7 @@ public abstract class WebcrawlerClicker {
      * @param textInElement the text inside the element
      */
     public static void firstElementWithExactText(WebDriver webDriver, String textInElement){
-        String createdXpath = ".//*[text()='" + textInElement + "']";
+        String createdXpath = "//*[contains(text(),'"+ textInElement + "')]";
         onElementWithXpath(webDriver,createdXpath);
         WaitForIt.waitForPageToLoad(webDriver);
     }
@@ -90,7 +90,7 @@ public abstract class WebcrawlerClicker {
      * @param elementToClick the element we want to click on
      */
     public static void clickOnByElement(WebDriver webDriver, By elementToClick){
-        Optional<WebElement> webElement = WaitForIt.waitForElementBy(webDriver,elementToClick);
+        Optional<WebElement> webElement = WaitForIt.waitForElementByClickable(webDriver,elementToClick);
         clickOnWebElement(webElement,webDriver);
         WaitForIt.waitForPageToLoad(webDriver);
     }

@@ -19,7 +19,7 @@ public abstract class WebcrawlerInputText {
      * @param text the text we want to type
      */
     public static void typeInElementWithBy(WebDriver webDriver, By element, String text){
-       Optional<WebElement> webElements = WaitForIt.waitForElementBy(webDriver,element);
+       Optional<WebElement> webElements = WaitForIt.waitForElementByClickable(webDriver,element);
        WebElement webElement = webElements.get();
        webElement.sendKeys(text);
     }
@@ -31,7 +31,7 @@ public abstract class WebcrawlerInputText {
      * @param text the text we want to type
      */
     public static void typeInElementWithName(WebDriver webDriver, String nameElement, String text){
-        Optional<WebElement> webElements = WaitForIt.waitForElementName(webDriver,nameElement);
+        Optional<WebElement> webElements = WaitForIt.waitForElementNameClickable(webDriver,nameElement);
         WebElement webElement = webElements.get();
         webElement.sendKeys(text);
     }
@@ -43,7 +43,7 @@ public abstract class WebcrawlerInputText {
      * @param text the text we want to type
      */
     public static void typeInElementWithId(WebDriver webDriver, String id, String text){
-        Optional<WebElement> webElements = WaitForIt.waitForElementID(webDriver,id);
+        Optional<WebElement> webElements = WaitForIt.waitForElementIDClickable(webDriver,id);
         WebElement webElement = webElements.get();
         webElement.sendKeys(text);
     }
@@ -55,7 +55,7 @@ public abstract class WebcrawlerInputText {
      * @param text the text we want to type
      */
     public static void typeInElementWithXpath(WebDriver webDriver, String xpath, String text){
-        Optional<WebElement> webElements = WaitForIt.waitForElementXpath(webDriver,xpath);
+        Optional<WebElement> webElements = WaitForIt.waitForElementXpathClickable(webDriver,xpath);
         WebElement webElement = webElements.get();
         webElement.sendKeys(text);
     }

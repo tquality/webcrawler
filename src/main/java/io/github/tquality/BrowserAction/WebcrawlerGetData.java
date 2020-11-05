@@ -131,12 +131,10 @@ public abstract class WebcrawlerGetData {
      * @return List of webelements with the options
      */
     public static List<WebElement> getTextElementsFromDropDownXpath(WebDriver webDriver, String xpathOfElement){
-        Optional<WebElement> presentElement = WaitForIt.waitForElementXpathClickable(webDriver,xpathOfElement);
-        if (presentElement.isPresent()){
-            return getAllSelectElements(presentElement);
-        }else{
-            throw new NoSuchElementException("Could not find element:" + xpathOfElement);
-        }
+        WaitForIt.waitForElementPresentXpath(webDriver,xpathOfElement);
+        WebElement webElement = webDriver.findElement(By.xpath(xpathOfElement));
+        Select select = new Select(webElement);
+        return select.getOptions();
     }
 
     /**
@@ -146,12 +144,10 @@ public abstract class WebcrawlerGetData {
      * @return List of webelements with the options
      */
     public static List<WebElement> getTextElementsFromDropDownName(WebDriver webDriver, String nameOfElement){
-        Optional<WebElement> presentElement = WaitForIt.waitForElementNameClickable(webDriver,nameOfElement);
-        if (presentElement.isPresent()){
-            return getAllSelectElements(presentElement);
-        }else{
-            throw new NoSuchElementException("Could not find element:" + nameOfElement);
-        }
+        WaitForIt.waitForElementPresentName(webDriver,nameOfElement);
+        WebElement webElement = webDriver.findElement(By.name(nameOfElement));
+        Select select = new Select(webElement);
+        return select.getOptions();
     }
 
     /**
@@ -161,11 +157,9 @@ public abstract class WebcrawlerGetData {
      * @return List of webelements with the options
      */
     public static List<WebElement> getTextElementsFromDropDownID(WebDriver webDriver, String idOfElement){
-        Optional<WebElement> presentElement = WaitForIt.waitForElementIDClickable(webDriver,idOfElement);
-        if (presentElement.isPresent()){
-            return getAllSelectElements(presentElement);
-        }else{
-            throw new NoSuchElementException("Could not find element:" + idOfElement);
-        }
+        WaitForIt.waitForElementPresentId(webDriver,idOfElement);
+        WebElement webElement = webDriver.findElement(By.id(idOfElement));
+        Select select = new Select(webElement);
+        return select.getOptions();
     }
 }

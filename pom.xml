@@ -193,7 +193,7 @@
         <connection>scm:git:git://github.com/tquality/webcrawler.git</connection>
         <developerConnection>scm:git:git@github.com:tquality/webcrawler.git</developerConnection>
         <url>https://github.com/tquality/webcrawler</url>
-        <tag>HEAD</tag>
+        <tag>webcrawler-1.0.11</tag>
     </scm>
 
     <properties>

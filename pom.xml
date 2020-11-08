@@ -4,7 +4,7 @@
 
     <groupId>io.github.tquality</groupId>
     <artifactId>webcrawler</artifactId>
-    <version>1.0.12-SNAPSHOT</version>
+    <version>1.0.12</version>
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>

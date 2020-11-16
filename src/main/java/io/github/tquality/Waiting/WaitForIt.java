@@ -178,4 +178,14 @@ public abstract class WaitForIt extends BaseWait{
             }catch (NoSuchElementException ignored){}
         }
     }
+
+    public static void waitForElementPresentByElement(WebDriver webDriver, By element){
+        for (int i=0;i<10;i++){
+            WaitForIt.waitForPageToLoad(webDriver);
+            try{
+                webDriver.findElement(element);
+                break;
+            }catch (NoSuchElementException ignored){}
+        }
+    }
 }

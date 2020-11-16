@@ -19,8 +19,8 @@ public abstract class WebcrawlerInputText {
      * @param text the text we want to type
      */
     public static void typeInElementWithBy(WebDriver webDriver, By element, String text){
-       Optional<WebElement> webElements = WaitForIt.waitForElementByClickable(webDriver,element);
-       WebElement webElement = webElements.get();
+       WaitForIt.waitForElementPresentByElement(webDriver,element);
+       WebElement webElement = webDriver.findElement(element);
        webElement.sendKeys(text);
     }
 
@@ -31,8 +31,8 @@ public abstract class WebcrawlerInputText {
      * @param text the text we want to type
      */
     public static void typeInElementWithName(WebDriver webDriver, String nameElement, String text){
-        Optional<WebElement> webElements = WaitForIt.waitForElementNameClickable(webDriver,nameElement);
-        WebElement webElement = webElements.get();
+        WaitForIt.waitForElementPresentName(webDriver,nameElement);
+        WebElement webElement = webDriver.findElement(By.name(nameElement));
         webElement.sendKeys(text);
     }
 
@@ -43,8 +43,8 @@ public abstract class WebcrawlerInputText {
      * @param text the text we want to type
      */
     public static void typeInElementWithId(WebDriver webDriver, String id, String text){
-        Optional<WebElement> webElements = WaitForIt.waitForElementIDClickable(webDriver,id);
-        WebElement webElement = webElements.get();
+        WaitForIt.waitForElementPresentId(webDriver,id);
+        WebElement webElement = webDriver.findElement(By.id(id));
         webElement.sendKeys(text);
     }
 
@@ -55,8 +55,8 @@ public abstract class WebcrawlerInputText {
      * @param text the text we want to type
      */
     public static void typeInElementWithXpath(WebDriver webDriver, String xpath, String text){
-        Optional<WebElement> webElements = WaitForIt.waitForElementXpathClickable(webDriver,xpath);
-        WebElement webElement = webElements.get();
+        WaitForIt.waitForElementPresentXpath(webDriver,xpath);
+        WebElement webElement = webDriver.findElement(By.xpath(xpath));
         webElement.sendKeys(text);
     }
 }

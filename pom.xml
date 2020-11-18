@@ -4,7 +4,7 @@
 
     <groupId>io.github.tquality</groupId>
     <artifactId>webcrawler</artifactId>
-    <version>1.0.15-SNAPSHOT</version>
+    <version>1.0.15</version>
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
@@ -183,7 +183,7 @@
         <connection>scm:git:git://github.com/tquality/webcrawler.git</connection>
         <developerConnection>scm:git:git@github.com:tquality/webcrawler.git</developerConnection>
         <url>https://github.com/tquality/webcrawler</url>
-      <tag>webcrawler-1.0.11</tag>
+      <tag>webcrawler-1.0.15</tag>
   </scm>
 
     <properties>

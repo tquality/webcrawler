@@ -1,4 +1,4 @@
-package io.github.tquality.BrowserAction;
+package io.github.tquality.DataHarvest;
 
 import io.github.tquality.Waiting.WaitForIt;
 import org.openqa.selenium.By;
@@ -42,5 +42,16 @@ public abstract class WebcrawlerGetElements {
     public static List<WebElement> getWebElementsId(WebDriver webdriver, String idElement) {
         WaitForIt.waitForElementPresentId(webdriver,idElement);
         return webdriver.findElements(By.id(idElement));
+    }
+
+    /**
+     * Return all the elments with the xpath
+     * @param webdriver the running webdriver
+     * @param cssSelector the element
+     * @return List of webelements
+     */
+    public static List<WebElement> getWebElementsCssSelector(WebDriver webdriver, String cssSelector) {
+        WaitForIt.waitForElementPresentCssSelector(webdriver,cssSelector);
+        return webdriver.findElements(By.cssSelector(cssSelector));
     }
 }

@@ -11,14 +11,14 @@ import java.util.Optional;
 /**
  * Class to click on different objects
  */
-public abstract class WebcrawlerClicker {
+public abstract class WebcrawlerClick {
 
     /**
      * Do the effective click on the webelement
      * @param elementOptional the element we will click on
      * @param webDriver the webdriver containing the browser
      */
-    private static void clickOnWebElement(Optional elementOptional, WebDriver webDriver){
+    private static void onWebElement(Optional elementOptional, WebDriver webDriver){
         WebElement element = (WebElement) elementOptional.get();
         element.click();
         WaitForIt.waitForPageToLoad(webDriver);
@@ -31,7 +31,18 @@ public abstract class WebcrawlerClicker {
      */
     public static void onElementWithName(WebDriver webDriver, String elementName){
         Optional<WebElement> webElement = WaitForIt.waitForElementNameClickable(webDriver,elementName);
-        clickOnWebElement(webElement,webDriver);
+        onWebElement(webElement,webDriver);
+        WaitForIt.waitForPageToLoad(webDriver);
+    }
+
+    /**
+     * Click on the element with css Selector
+     * @param webDriver the webdriver containing the browser
+     * @param cssSelector the name of the element
+     */
+    public static void onElementWithCssSelector(WebDriver webDriver, String cssSelector){
+        Optional<WebElement> webElement = WaitForIt.waitForElementCSSSelectorClickable(webDriver,cssSelector);
+        onWebElement(webElement,webDriver);
         WaitForIt.waitForPageToLoad(webDriver);
     }
 
@@ -42,7 +53,7 @@ public abstract class WebcrawlerClicker {
      */
     public static void onElementWithXpath(WebDriver webDriver, String elementXpath){
         Optional<WebElement> webElement = WaitForIt.waitForElementXpathClickable(webDriver,elementXpath);
-        clickOnWebElement(webElement,webDriver);
+        onWebElement(webElement,webDriver);
         WaitForIt.waitForPageToLoad(webDriver);
     }
 
@@ -51,9 +62,9 @@ public abstract class WebcrawlerClicker {
      * @param webDriver the webdriver containing the browser
      * @param linkedText the text of the link of the element
      */
-    public static void onLinkedText(WebDriver webDriver, String linkedText){
+    public static void onElementLinkedText(WebDriver webDriver, String linkedText){
         Optional<WebElement> webElement = WaitForIt.waitForElementLinkedTextClickable(webDriver,linkedText);
-        clickOnWebElement(webElement,webDriver);
+        onWebElement(webElement,webDriver);
         WaitForIt.waitForPageToLoad(webDriver);
     }
 
@@ -62,7 +73,7 @@ public abstract class WebcrawlerClicker {
      * @param webDriver the webdriver containing the browser
      * @param textInElement the text inside the element
      */
-    public static void lastElementWithExactText(WebDriver webDriver, String textInElement){
+    public static void onLastElementWithExactText(WebDriver webDriver, String textInElement){
         try {
             textInElement = new String(textInElement.getBytes(), "UTF8");
         } catch (UnsupportedEncodingException e) {
@@ -78,7 +89,7 @@ public abstract class WebcrawlerClicker {
      * @param webDriver the webdriver containing the browser
      * @param textInElement the text inside the element
      */
-    public static void firstElementWithExactText(WebDriver webDriver, String textInElement){
+    public static void onFirstElementWithExactText(WebDriver webDriver, String textInElement){
         String createdXpath = "//*[contains(text(),'"+ textInElement + "')]";
         onElementWithXpath(webDriver,createdXpath);
         WaitForIt.waitForPageToLoad(webDriver);
@@ -89,9 +100,9 @@ public abstract class WebcrawlerClicker {
      * @param webDriver the running browser
      * @param elementToClick the element we want to click on
      */
-    public static void clickOnByElement(WebDriver webDriver, By elementToClick){
+    public static void onElementByObject(WebDriver webDriver, By elementToClick){
         Optional<WebElement> webElement = WaitForIt.waitForElementByClickable(webDriver,elementToClick);
-        clickOnWebElement(webElement,webDriver);
+        onWebElement(webElement,webDriver);
         WaitForIt.waitForPageToLoad(webDriver);
     }
 }

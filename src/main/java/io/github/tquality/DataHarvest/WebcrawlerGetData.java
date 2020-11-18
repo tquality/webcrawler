@@ -1,4 +1,4 @@
-package io.github.tquality.BrowserAction;
+package io.github.tquality.DataHarvest;
 
 import io.github.tquality.Waiting.WaitForIt;
 import org.openqa.selenium.By;
@@ -37,6 +37,11 @@ public abstract class WebcrawlerGetData {
         return webElement.getText();
     }
 
+    /**
+     * Get text from webelement
+     * @param webElement the webelement
+     * @return the text inside the element
+     */
     private static String getTextFromElement(WebElement webElement){
         return webElement.getText();
     }
@@ -114,6 +119,30 @@ public abstract class WebcrawlerGetData {
     }
 
     /**
+     * Get the text from an ID element without cutting the newline
+     * @param webDriver the running webdriver with the browser
+     * @param cssSelector the element we want to get the text from
+     * @return String that contains the text
+     */
+    public static String getTextCssSelectorElementWithoutCuttingNewline(WebDriver webDriver, String cssSelector){
+        WaitForIt.waitForElementPresentCssSelector(webDriver,cssSelector);
+        WebElement webElement = webDriver.findElement(By.cssSelector(cssSelector));
+        return getTextFromElement(webElement);
+    }
+
+    /**
+     * Get the text from an ID element with cutting the newline
+     * @param webDriver the running webdriver with the browser
+     * @param cssSelector the element we want to get the text from
+     * @return String that contains the text
+     */
+    public static String getTextCssSelectorElementWithCuttingNewline(WebDriver webDriver, String cssSelector){
+        WaitForIt.waitForElementPresentCssSelector(webDriver,cssSelector);
+        WebElement webElement = webDriver.findElement(By.cssSelector(cssSelector));
+        return getTextFromElement(webElement);
+    }
+
+    /**
      * Get all the elements from a dropdown
      * @param webElementOptional the element we want the options of
      * @return List of webelements with all the options
@@ -159,6 +188,19 @@ public abstract class WebcrawlerGetData {
     public static List<WebElement> getTextElementsFromDropDownID(WebDriver webDriver, String idOfElement){
         WaitForIt.waitForElementPresentId(webDriver,idOfElement);
         WebElement webElement = webDriver.findElement(By.id(idOfElement));
+        Select select = new Select(webElement);
+        return select.getOptions();
+    }
+
+    /**
+     * Get All the options from a dropdown element
+     * @param webDriver the webdriver with the browser
+     * @param cssSelector the element we want the options of
+     * @return List of webelements with the options
+     */
+    public static List<WebElement> getTextElementsFromDropDownCssSelector(WebDriver webDriver, String cssSelector){
+        WaitForIt.waitForElementPresentCssSelector(webDriver,cssSelector);
+        WebElement webElement = webDriver.findElement(By.cssSelector(cssSelector));
         Select select = new Select(webElement);
         return select.getOptions();
     }

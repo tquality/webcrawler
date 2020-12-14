@@ -73,7 +73,25 @@ public abstract class WebcrawlerClick {
      * @param webDriver the webdriver containing the browser
      * @param textInElement the text inside the element
      */
+    @Deprecated
     public static void onLastElementWithExactText(WebDriver webDriver, String textInElement){
+        try {
+            textInElement = new String(textInElement.getBytes(), "UTF8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        String createdXpath = "(//*[contains(text(),'"+ textInElement + "')])[last()]";
+        onElementWithXpath(webDriver,createdXpath);
+        WaitForIt.waitForPageToLoad(webDriver);
+    }
+
+    /**
+     * Click on the element that contains text
+     * @param webDriver the webdriver containing the browser
+     * @param textInElement the text inside the element
+     */
+    @Deprecated
+    public static void onLastElementContainsText(WebDriver webDriver, String textInElement){
         try {
             textInElement = new String(textInElement.getBytes(), "UTF8");
         } catch (UnsupportedEncodingException e) {
@@ -89,7 +107,20 @@ public abstract class WebcrawlerClick {
      * @param webDriver the webdriver containing the browser
      * @param textInElement the text inside the element
      */
+    @Deprecated
     public static void onFirstElementWithExactText(WebDriver webDriver, String textInElement){
+        String createdXpath = "//*[contains(text(),'"+ textInElement + "')]";
+        onElementWithXpath(webDriver,createdXpath);
+        WaitForIt.waitForPageToLoad(webDriver);
+    }
+
+    /**
+     * Click on the element that contains text
+     * @param webDriver the webdriver containing the browser
+     * @param textInElement the text inside the element
+     */
+    @Deprecated
+    public static void onFirstElementContainsText(WebDriver webDriver, String textInElement){
         String createdXpath = "//*[contains(text(),'"+ textInElement + "')]";
         onElementWithXpath(webDriver,createdXpath);
         WaitForIt.waitForPageToLoad(webDriver);

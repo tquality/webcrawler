@@ -90,7 +90,6 @@ public abstract class WebcrawlerClick {
      * @param webDriver the webdriver containing the browser
      * @param textInElement the text inside the element
      */
-    @Deprecated
     public static void onLastElementContainsText(WebDriver webDriver, String textInElement){
         try {
             textInElement = new String(textInElement.getBytes(), "UTF8");
@@ -119,7 +118,6 @@ public abstract class WebcrawlerClick {
      * @param webDriver the webdriver containing the browser
      * @param textInElement the text inside the element
      */
-    @Deprecated
     public static void onFirstElementContainsText(WebDriver webDriver, String textInElement){
         String createdXpath = "//*[contains(text(),'"+ textInElement + "')]";
         onElementWithXpath(webDriver,createdXpath);

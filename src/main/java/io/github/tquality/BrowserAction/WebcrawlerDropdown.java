@@ -11,11 +11,36 @@ import java.util.Optional;
 /**
  * Abstract class to use dropdown boxes
  */
-public class WebcrawlerDropdown {
+public abstract class WebcrawlerDropdown {
 
+    /**
+     * Select the specified value
+     * @param webElement the element
+     * @param value the value
+     */
     private static void selectValue(WebElement webElement, String value){
         Select select = new Select(webElement);
         select.selectByValue(value);
+    }
+
+    /**
+     * Select the specified text
+     * @param webElement the element
+     * @param visibleText the value
+     */
+    private static void selectVisibleText(WebElement webElement,String visibleText){
+        Select select = new Select(webElement);
+        select.selectByVisibleText(visibleText);
+    }
+
+    /**
+     * Select the specified index
+     * @param webElement the element
+     * @param index the number
+     */
+    private static void selectByIndex(WebElement webElement, int index){
+        Select select = new Select(webElement);
+        select.selectByIndex(index);
     }
 
     /**

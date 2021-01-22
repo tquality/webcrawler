@@ -4,7 +4,7 @@
 
     <groupId>io.github.tquality</groupId>
     <artifactId>webcrawler</artifactId>
-    <version>3.0.4-SNAPSHOT</version>
+    <version>3.0.3</version>
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
@@ -94,7 +94,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>3.0.0-M1</version>
+                <version>2.5.3</version>
                 <configuration>
                     <localCheckout>true</localCheckout>
                     <pushChanges>false</pushChanges>
@@ -183,7 +183,7 @@
         <connection>scm:git:git://github.com/tquality/webcrawler.git</connection>
         <developerConnection>scm:git:git@github.com:tquality/webcrawler.git</developerConnection>
         <url>https://github.com/tquality/webcrawler</url>
-      <tag>webcrawler-2.0.3</tag>
+      <tag>webcrawler-3.0.3</tag>
   </scm>
 
     <properties>

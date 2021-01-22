@@ -179,13 +179,6 @@
         </developer>
     </developers>
 
-    <scm>
-        <connection>scm:git:git://github.com/tquality/webcrawler.git</connection>
-        <developerConnection>scm:git:git@github.com:tquality/webcrawler.git</developerConnection>
-        <url>https://github.com/tquality/webcrawler</url>
-      <tag>webcrawler-2.0.3</tag>
-  </scm>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>

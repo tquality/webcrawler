@@ -94,7 +94,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.3</version>
+                <version>3.0.0-M1</version>
                 <configuration>
                     <localCheckout>true</localCheckout>
                     <pushChanges>false</pushChanges>
@@ -178,6 +178,13 @@
             <organization>TQuality</organization>
         </developer>
     </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/tquality/webcrawler.git</connection>
+        <developerConnection>scm:git:git@github.com:tquality/webcrawler.git</developerConnection>
+        <url>https://github.com/tquality/webcrawler</url>
+      <tag>webcrawler-2.0.3</tag>
+  </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
